@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/about', [HomeController::class, 'about']);
+
+Route::get('/contact', [HomeController::class, 'contact']);
+
+Route::get('/register', [UserController::class, 'register'])->middleware('guest');
+
+Route::post('/register', [UserController::class, 'store']);
+
+Route::get('/login', [UserController::class, 'login'])->middleware('guest');
+
+Route::post('/login', [UserController::class, 'authenticate']);
+
+Route::post('/logout', [UserController::class, 'logout']);
+
+Route::get('/profile', [UserController::class, 'profile'])->middleware('auth');
+
+Route::get('/books', [UserController::class, 'books'])->middleware('auth');
+
+Route::get('/filter/{type:type}', [UserController::class, 'filter']);

@@ -1,0 +1,185 @@
+* {
+	font-family: "Montserrat", sans-serif;
+}
+
+body {
+	background-color: #e1e1e1;
+}
+
+nav {
+	min-height: 50px;
+}
+
+nav span a,
+a.btn {
+	font-weight: 600;
+	font-size: 18px;
+	font-style: normal;
+	padding: 5px 10px;
+	margin: 0 20px;
+	text-decoration: none;
+	align-items: center;
+	justify-content: center;
+}
+
+i {
+	color: white;
+	font-size: 30px;
+}
+
+a {
+	text-decoration: none;
+}
+
+h3.navbar-brand {
+	font-weight: 800;
+	font-style: italic;
+}
+
+.navbar {
+	background-color: rgba(50, 50, 50, 0.2);
+}
+
+header {
+	height: 80vh;
+	background-image: url("../img/background_blue.png");
+	background-position: center;
+	background-size: cover;
+	background-clip: padding-box;
+}
+
+h1.slogan {
+	margin: auto;
+	padding-top: 40px;
+	line-height: 60px;
+	font-size: 50px;
+	font-weight: 600;
+}
+
+#header {
+	padding-top: 60px;
+}
+
+.deskripsi-tentang {
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.deskripsi-tentang span {
+	font-weight: 700;
+	font-style: italic;
+}
+
+.menu-bar {
+	background-color: #e1e1e1;
+}
+
+.menu {
+	min-height: 100px;
+	width: 60%;
+	position: relative;
+	top: -50px;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 15px;
+}
+
+.menu div.circle span {
+	font-size: 15px;
+	font-weight: 300;
+	display: block;
+	position: absolute;
+	bottom: 0;
+}
+
+div.circle {
+	width: 70px;
+	height: 70px;
+	align-items: center;
+	justify-content: center;
+	font-size: 50px;
+	background-color: #00ccff;
+}
+
+.excerp {
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 4;
+}
+
+.rekomendasi-section div h2 {
+	font-weight: 600;
+	display: inline;
+}
+
+.populer-section div h2 {
+	font-weight: 600;
+	display: inline;
+}
+
+.relevan-section div h2 {
+	font-weight: 600;
+	display: inline;
+}
+
+.rekomendasi-section div a {
+	float: right;
+	display: inline;
+}
+
+.populer-section div a {
+	float: right;
+	display: inline;
+}
+
+.relevan-section div a {
+	float: right;
+	display: inline;
+}
+
+.daftar-populer {
+	margin: auto;
+}
+
+.daftar-rekomendasi {
+	margin: auto;
+}
+
+#rekomendasi,
+#populer,
+#relevan {
+	margin-bottom: 80px;
+}
+
+.unggulan-section {
+	min-height: 1000px;
+}
+
+.unggulan-section h2 {
+	font-weight: 600;
+}
+
+.card-unggulan1 {
+	float: right;
+	display: block;
+	margin-bottom: 80px;
+}
+
+.card-unggulan2 {
+	float: left;
+	display: block;
+}
+
+.img-unggulan {
+	min-height: 400px;
+	background-size: contain;
+	background-position: center;
+	background-clip: padding-box;
+}
+
+#footer {
+	position: static;
+	bottom: 0;
+	min-height: 60px;
+}

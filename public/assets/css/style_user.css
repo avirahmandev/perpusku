@@ -1,0 +1,30 @@
+* {
+	font-family: "Montserrat", sans-serif;
+}
+
+body {
+	background-color: #e1e1e1;
+}
+
+.offcanvas {
+	height: 80vh;
+	transition-duration: 0.1s;
+}
+
+.navbar {
+	background-image: url("../img/background_blue.png");
+	background-position: center;
+	background-size: cover;
+	background-clip: padding-box;
+}
+
+header {
+	height: 100vh;
+}
+
+.excerp {
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 4;
+}
