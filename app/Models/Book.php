@@ -12,19 +12,6 @@ class Book extends Model
 
     protected $guarded = ['id'];
 
-
-    // public function scopeFilter($query, array $filters)
-    // {
-        // if (isset($filters['sortby']) ? $filters['sortby', 'category'] : false) {
-        //     return $query->where('populer', 1);
-        // }
-
-        // $query->when($filters['category'] ?? false, function ($query, $category) {
-        //     return $query->whereHas('category', function ($query) use ($category) {
-        //         $query->where('slug', $category);
-        //     });
-        // });
-    // }
     public function scopeCategory($query, $category)
     {
         $query->when($category ?? false, fn ($query, $category) =>
@@ -37,5 +24,10 @@ class Book extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

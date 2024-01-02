@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models;
 use App\Models\User;
 use App\Models\Book;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
@@ -15,9 +15,9 @@ class UserController extends Controller
     {
         $data = [
             "title" => "profile",
-            "data"  => User::first()
+            "data"  => User::find(auth()->user()->id)
         ];
-
+        
         return view('user/profile', $data);
     }
 

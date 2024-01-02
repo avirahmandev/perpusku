@@ -8,7 +8,7 @@
                 <div class="card">
                     <img src="assets/img/background_blue.png" class="card-img-top" alt="">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $data->nama_lengkap }}</h5>
+                        <h5 class="card-title">{{ auth()->user()->nama_lengkap }}</h5>
                         <p class="card-text">Bio pengguna. Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                     <ul class="list-group list-group-flush">
@@ -23,6 +23,9 @@
                     <a href="#edit-profil" class="list-group-item list-group-item-action" data-bs-toggle="offcanvas" data-bs-target="#edit-profil" role="button" aria-controls="edit-profil">Ubah Profil <span class="text-light-emphasis float-end">❯</span></a>
                     <a href="/favorit" class="list-group-item list-group-item-action">Favorit <span class="text-light-emphasis float-end">❯</span></a>
                     <a href="/pinjaman" class="list-group-item list-group-item-action">Buku Pinjaman <span class="text-light-emphasis float-end">❯</span></a>
+                    @if(auth()->user()->is_admin)
+                    <a href="/dashboard" class="list-group-item list-group-item-action">Dashboard Administrator<span class="text-light-emphasis float-end">❯</span></a>
+                    @endif
                 </div>
             </div>
             <form action="/logout" method="post">

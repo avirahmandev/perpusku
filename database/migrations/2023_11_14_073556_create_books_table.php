@@ -15,8 +15,13 @@ return new class extends Migration
             $table->id();
             // $table->string('cover')->nullable();
             $table->string('judul');
+            $table->string('slug');
             $table->string('penulis');
             $table->text('deskripsi');
+            $table->integer('halaman')->default(0);
+            $table->boolean('tipe')->default(false);
+            $table->string('penerbit');
+            // $table->file('file_pdf');
             $table->foreignId('category_id');
             $table->boolean('populer')->default(false);
             $table->boolean('rekomendasi')->default(false);

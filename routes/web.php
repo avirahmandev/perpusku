@@ -4,6 +4,7 @@ use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardAdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +28,7 @@ Route::post('/register', [UserController::class, 'store']);
 
 Route::get('/login', [UserController::class, 'login'])->middleware('guest');
 
-Route::post('/login', [UserController::class, 'authenticate']);
+Route::post('/login', [UserController::class, 'authenticate'])->name('login');
 
 Route::post('/logout', [UserController::class, 'logout']);
 
@@ -36,3 +37,13 @@ Route::get('/profile', [UserController::class, 'profile'])->middleware('auth');
 Route::get('/books', [UserController::class, 'books'])->middleware('auth');
 
 Route::get('/filter/{type:type}', [UserController::class, 'filter']);
+
+Route::get('/dashboard', function() {
+	return view('dashboard/index');
+})->middleware('auth');
+
+Route::get('/dashboard/trash', function() {
+    return view('/dashboard/books/trash');
+})->middleware('auth');
+
+Route::resource('/dashboard/books', DashboardAdminController::class)->middleware('auth');
