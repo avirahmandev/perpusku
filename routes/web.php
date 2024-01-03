@@ -36,14 +36,12 @@ Route::get('/profile', [UserController::class, 'profile'])->middleware('auth');
 
 Route::get('/books', [UserController::class, 'books'])->middleware('auth');
 
-Route::get('/filter/{type:type}', [UserController::class, 'filter']);
-
 Route::get('/dashboard', function() {
 	return view('dashboard/index');
-})->middleware('auth');
+})->middleware('admin');
 
 Route::get('/dashboard/trash', function() {
     return view('/dashboard/books/trash');
-})->middleware('auth');
+})->middleware('admin');
 
-Route::resource('/dashboard/books', DashboardAdminController::class)->middleware('auth');
+Route::resource('/dashboard/books', DashboardAdminController::class)->middleware('admin');

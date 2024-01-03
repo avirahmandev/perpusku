@@ -23,16 +23,15 @@
                     <a href="#edit-profil" class="list-group-item list-group-item-action" data-bs-toggle="offcanvas" data-bs-target="#edit-profil" role="button" aria-controls="edit-profil">Ubah Profil <span class="text-light-emphasis float-end">❯</span></a>
                     <a href="/favorit" class="list-group-item list-group-item-action">Favorit <span class="text-light-emphasis float-end">❯</span></a>
                     <a href="/pinjaman" class="list-group-item list-group-item-action">Buku Pinjaman <span class="text-light-emphasis float-end">❯</span></a>
-                    @if(auth()->user()->is_admin)
+                    @can('admin')
                     <a href="/dashboard" class="list-group-item list-group-item-action">Dashboard Administrator<span class="text-light-emphasis float-end">❯</span></a>
-                    @endif
+                    @endcan
                 </div>
             </div>
             <form action="/logout" method="post">
                 @csrf
                 <button class="btn btn-danger mx-auto d-block" type="submit">Keluar</button>
             </form>
-            {{-- <a href="/logout" class="btn btn-danger text-center" style="max-width: 100px; margin: auto;">Keluar</a> --}}
         </div>
     </div>
     <div class="offcanvas offcanvasbottom container" tabindex="-1" id="edit-profil" aria-labelledby="edit-profil">
