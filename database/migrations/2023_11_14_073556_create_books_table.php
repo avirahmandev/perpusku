@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            // $table->string('cover')->nullable();
+            $table->string('cover')->nullable();
             $table->string('judul');
             $table->string('slug');
             $table->string('penulis');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('halaman')->default(0);
             $table->boolean('tipe')->default(false);
             $table->string('penerbit');
-            // $table->file('file_pdf');
+            // $table->string('file_pdf');
             $table->foreignId('category_id');
             $table->boolean('populer')->default(false);
             $table->boolean('rekomendasi')->default(false);

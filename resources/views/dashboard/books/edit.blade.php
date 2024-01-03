@@ -6,7 +6,7 @@
 		<div class="row">
             <div class="card p-5 mx-auto">
                 <h2>Perbarui informasi buku</h2>
-                <form action="/dashboard/books/{{ $book->slug }}" method="post" class="form mt-2">
+                <form action="/dashboard/books/{{ $book->slug }}" method="post" class="form mt-2" enctype="multipart/form-data">
                 	@method('put')
                     @csrf
                     <div class="row g-3">
@@ -83,20 +83,23 @@
                     	</div>	
                     </div>
                     <div class="col mt-3">
-                    	<label for="sampul" class="form-label">Sampul Buku</label>
-						<input class="form-control" name="sampul" type="file" id="sampul" required>
+                    	<label for="cover" class="form-label">Sampul Buku</label>
+                    	<input type="hidden" name="oldCover" value="{{ $book->cover }}">
+                    	@if($book->cover)
+                    		<img src="{{ asset('storage/'. $book->cover) }}" class="img-preview img-fluid mb-3 col-sm-4 d-block">
+                    	@else
+                    		<img class="img-preview img-fluid mb-3 col-sm-4">
+                    	@endif
+						<input class="form-control @error('cover') is-invalid @enderror" name="cover" type="file" id="cover" onchange="previewImage()">
+						@error('cover')
+		                    <div class="invalid-feedback">
+		                        {{ $message }}
+		                    </div>
+		                @enderror
                     </div>
                     <button type="submit" class="btn btn-lg btn-primary text-center px-5 mt-4 d-grid mx-auto">Simpan</button>
                 </form>
             </div>
         </div>
 	</div>
-
-<script>
-	const title = document.querySelector('#judul');
-	const slug = document.querySelector('#slug');
-	title.addEventListener('keyup', function() {
-		slug.value = title.value.replace(/ /g, "-").toLowerCase();
-	});
-</script>
 @endSection

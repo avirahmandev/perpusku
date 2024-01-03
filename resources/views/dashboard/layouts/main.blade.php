@@ -31,6 +31,8 @@
 		</div>
 	</div>
 </header>
-<script src="/assets/bootstrap-5.3.0-dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="/assets/bootstrap-5.3.0-dist/js/bootstrap.min.js"></script>
+<script src="/assets/js/dashboard.js"></script>
 </body>
 </html>

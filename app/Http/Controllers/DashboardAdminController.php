@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardAdminController extends Controller
 {
@@ -34,9 +35,10 @@ class DashboardAdminController extends Controller
     public function store(Request $request)
     {
 
+        // $request->file('cover')->store('books-cover');
 
         $validatedData = $request->validate([
-            // 'cover'         => 'required',
+            'cover'         => 'required|image|file|max:1024',
             'judul'         => 'required|max:255',
             'slug'          => 'required|unique:books',
             'penulis'       => 'required',
@@ -51,8 +53,13 @@ class DashboardAdminController extends Controller
         ],
         [
             'required'      => 'Kolom wajib diisi!',
-            'slug.unique'   => 'Permalink telah digunakan, bersifat unik. Tambahkan karakter lagi di akhir!'
+            'slug.unique'   => 'Permalink telah digunakan, bersifat unik. Tambahkan karakter lagi di akhir!',
+            'cover.max'     => 'Upload gambar sampul maksimal 1mb.',
+            'cover.image'   => 'File harus berformat gambar!'
         ]);
+
+        # store the image file
+        $validatedData['cover'] = $request->file('cover')->store('books-cover');
 
         Book::create($validatedData);
         return redirect('/dashboard/books')->with('success', 'Berhasil menambahkan buku!');
@@ -82,7 +89,7 @@ class DashboardAdminController extends Controller
     public function update(Request $request, Book $book)
     {
         $rules = [
-            // 'cover'         => 'required',
+            'cover'         => 'image|file|max:1024',
             'judul'         => 'required|max:255',
             'penulis'       => 'required',
             'deskripsi'     => 'required|max:1000',
@@ -97,7 +104,9 @@ class DashboardAdminController extends Controller
 
         $customMessages = [
             'required'      => 'Kolom wajib diisi!',
-            'slug.unique'   => 'Permalink telah digunakan, bersifat unik. Tambahkan karakter lagi di akhir!'
+            'slug.unique'   => 'Permalink telah digunakan, bersifat unik. Tambahkan karakter lagi di akhir!',
+            'cover.max'     => 'Upload gambar sampul maksimal 1mb.',
+            'cover.image'   => 'File harus berformat gambar!'
         ];
 
         if($request->slug != $book->slug) {
@@ -106,9 +115,21 @@ class DashboardAdminController extends Controller
 
         $validatedData = $request->validate($rules, $customMessages);
 
+        # if have new cover, store
+        if ($request->file('cover')) {
+
+            # if have old img, delete
+            if($request->file('cover')) {
+                if($request->oldCover) {
+                    Storage::delete($request->oldCover);                
+                }
+            }
+
+            $validatedData['cover'] = $request->file('cover')->store('books-cover');
+        }
+
         Book::where('id', $book->id)->update($validatedData);
         return redirect('/dashboard/books')->with('success', 'Berhasil memperbarui informasi buku!');
-
     }
 
     /**
@@ -116,7 +137,11 @@ class DashboardAdminController extends Controller
      */
     public function destroy(Book $book)
     {
+        if($book->cover) {
+            Storage::delete($book->cover);
+        }
+
         Book::destroy($book->id);
-        return redirect('/dashboard/books')->with('success', 'Buku dipindahkan ke Trash!');
+        return redirect('/dashboard/books')->with('success', 'Buku berhasil dipindahkan ke Trash!');
     }
 }

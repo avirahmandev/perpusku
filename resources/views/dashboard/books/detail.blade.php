@@ -20,7 +20,13 @@
                 </form>
                 </div>
                 <div class="card col-lg-10 mx-auto my-1">
-                    <img src="/assets/img/background_blue.png" class="card-img-top" alt="">
+                    @if($cover)
+                        <div style="max-height: 380px; overflow: hidden;">
+                            <img src="{{ asset('storage/'. $cover) }}" class="card-img-top" alt="">
+                        </div>
+                    @else
+                        <img src="/assets/img/background_blue.png" class="card-img-top" alt="">
+                    @endif
                 </div>
                 <div class="card-body">
                     <h6 class="card-subtitle mb-2 text-muted"> {{ $penulis }} </h6>
