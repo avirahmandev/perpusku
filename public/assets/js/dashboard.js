@@ -1,7 +1,8 @@
 const title = document.querySelector('#judul');
 const slug = document.querySelector('#slug');
 title.addEventListener('keyup', function() {
-	slug.value = title.value.replace(/ /g, "-").toLowerCase();
+	let filteredText = title.value.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+	slug.value = filteredText.replace(/\s+/g, "-");
 });
 
 function previewImage() {

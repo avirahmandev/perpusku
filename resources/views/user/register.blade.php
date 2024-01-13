@@ -9,12 +9,13 @@
                 <form action="/register" method="post" class="form mt-3">
                     @csrf
                     <label for="nama" class="form-label">Nama Lengkap :</label>
-                    <input type="text" name="nama_lengkap" class="form-control @error('nama_lengkap') is-invalid @enderror" id="nama" value="{{ old('nama_lengkap') }}" placeholder="nama lengkap" autofocus required>
+                    <input type="text" name="nama_lengkap" class="form-control @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap" value="{{ old('nama_lengkap') }}" placeholder="nama lengkap" autofocus required>
                     @error('nama_lengkap')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                     @enderror
+                    <input type="hidden" name="slug" id="slug">
                     <label for="email" class="form-label">Email :</label>
                     <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email') }}" placeholder="example@gmail.com" required>
                     @error('email')
@@ -36,4 +37,17 @@
         </div>
     </div>
 </header>
+<script>
+const title = document.querySelector('#email');
+const slug = document.querySelector('#slug');
+title.addEventListener('keyup', function() {
+    // get value before '@'
+    let filteredMail = title.value.substring(0, title.value.indexOf("@"));
+    // replace any characters to empty space
+    let filteredText = filteredMail.replace(/[`~!@#$%^&*()_\-+=\[\]{};:'"\\|\/,.<>?\s]/g, ' ').toLowerCase();
+    // replace empty space with dash '-'
+    slug.value = filteredText.replace(/\s+/g, "-");
+});
+</script>
+</script>
 @endSection

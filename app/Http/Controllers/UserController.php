@@ -60,12 +60,11 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            "nama_lengkap" => "required|min:3|max:255",
-            "email" => "required|email:filter|unique:users",
-            "password" => "required|min:6|max:255"
+            "nama_lengkap"  => "required|min:3|max:255",
+            "email"         => "required|email:filter|unique:users",
+            "slug"          => "required",
+            "password"      => "required|min:6|max:255"
         ]);
-
-        $validatedData['slug'] = $validatedData['nama_lengkap'];
 
         User::create($validatedData);
 
