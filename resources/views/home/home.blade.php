@@ -22,11 +22,11 @@
 @endif
 <section class="menu-bar">
     <div class="container menu rounded bg-light d-flex justify-content-evenly">
-        <div class="circle rounded-circle text-center d-flex"><i class="bi bi-grid"></i><span>Kategori</span></div>
-        <div class="circle rounded-circle text-center d-flex"><i class="bi bi-bookmark-heart"></i><span>Favorit</span></div>
-        <div class="circle rounded-circle text-center d-flex"><i class="bi bi-journal-bookmark"></i><span>Pinjaman</span></div>
-        <div class="circle rounded-circle text-center d-flex"><i class="bi bi-exclamation-circle"></i><span>Panduan</span></div>
-        <div class="circle rounded-circle text-center d-flex"><i class="bi bi-search"></i><span>Cari</span></div>
+        <div onclick="window.location.href='#'" class="circle rounded-circle text-center d-flex"><i class="bi bi-grid"></i><span>Kategori</span></div>
+        <div onclick="window.location.href='/wishlist'" class="circle rounded-circle text-center d-flex"><i class="bi bi-bookmark-heart"></i><span>Favorit</span></div>
+        <div onclick="window.location.href='/borrowed'" class="circle rounded-circle text-center d-flex"><i class="bi bi-journal-bookmark"></i><span>Buku Dipinjam</span></div>
+        <div onclick="window.location.href='#'" class="circle rounded-circle text-center d-flex"><i class="bi bi-exclamation-circle"></i><span>Panduan</span></div>
+        <div onclick="window.location.href='#'" class="circle rounded-circle text-center d-flex"><i class="bi bi-search"></i><span>Cari</span></div>
     </div>
 </section>
 <section class="rekomendasi-section" id="rekomendasi">

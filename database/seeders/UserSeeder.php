@@ -20,7 +20,8 @@ class UserSeeder extends Seeder
             'email' => 'test@gmail.com',
             'password' => bcrypt('asd'),
             'wishlist' => 'asd asd',
-            'status_pinjaman' => 'ini status pinjaman',
+            'borrowed_list' => 'ini status pinjaman',
+            'is_admin' => false
         ]);
 
         User::factory()->create([
@@ -29,7 +30,8 @@ class UserSeeder extends Seeder
             'email' => 'john@gmail.com',
             'password' => bcrypt('123'),
             'wishlist' => '123 123',
-            'status_pinjaman' => 'ini status pinjaman',
+            'borrowed_list' => 'ini status pinjaman',
+            'is_admin' => false
         ]);
 
         User::factory()->create([
@@ -38,7 +40,7 @@ class UserSeeder extends Seeder
             'email' => 'dani@gmail.com',
             'password' => bcrypt('asdasd'),
             'wishlist' => '123 123',
-            'status_pinjaman' => 'ini status pinjaman',
+            'borrowed_list' => 'ini status pinjaman',
             'is_admin' => true
         ]);
     }

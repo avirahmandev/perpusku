@@ -29,8 +29,8 @@
 		                    @enderror
 						</div>
                     </div>
-                    <div class="row mt-3 g-3">	
-                    	<div class="col-7">		
+                    <div class="row mt-1 g-3">	
+                    	<div class="col-7">
 		                    <label for="penulis" class="form-label">Penulis</label>
 		                    <input type="text" name="penulis" class="form-control" id="penulis" value="{{ old('penulis', $book->penulis) }}" required>
 		                    <label for="penerbit" class="form-label">Penerbit</label>

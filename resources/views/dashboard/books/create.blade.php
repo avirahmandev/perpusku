@@ -28,14 +28,14 @@
 		                    @enderror
 						</div>
                     </div>
-                    <div class="row mt-3 g-3">	
+                    <div class="row mt-1 g-3">	
                     	<div class="col-7">		
 		                    <label for="penulis" class="form-label">Penulis</label>
 		                    <input type="text" name="penulis" class="form-control" id="penulis" value="{{ old('penulis') }}" required>
 		                    <label for="penerbit" class="form-label">Penerbit</label>
 		                    <input type="text" name="penerbit" class="form-control" id="penerbit" value="{{ old('penerbit') }}" required>
                     	</div>
-                    	<div class="col-5">		
+                    	<div class="col-5">
 							<label for="halaman" class="form-label">Halaman</label>
 		                    <input type="number" name="halaman" class="form-control" id="halaman" value="{{ (old('halaman')) ? old('halaman') : 0 }}" min="0" max="5000" required>
 							<label for="tipe" class="form-label">Tipe</label>

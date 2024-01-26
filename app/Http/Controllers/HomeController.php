@@ -16,8 +16,6 @@ class HomeController extends Controller
             "data"  => Book::all()
         ];
 
-        // dd(Book::all());
-
         return view('home/home', $data);
     }
 
@@ -30,5 +28,5 @@ class HomeController extends Controller
     {
         return view('home/contact');
     }
-    
+  
 }

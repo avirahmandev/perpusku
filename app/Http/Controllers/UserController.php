@@ -47,6 +47,27 @@ class UserController extends Controller
         return view('user/filter_page', $data);
     }
 
+
+    public function wishlist()
+    {
+        $data = [
+            "title" => "Favorit",
+            "data"  => Book::all()
+        ];
+
+        return view('user/wishlist', $data);
+    }
+
+    public function borrowed()
+    {
+        $data = [
+            "title" => "Buku Dipinjam",
+            "data"  => Book::all()
+        ];
+
+        return view('user/borrowed', $data);
+    }
+
     public function register()
     {
         $data = [

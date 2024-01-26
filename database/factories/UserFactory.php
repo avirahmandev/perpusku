@@ -25,7 +25,7 @@ class UserFactory extends Factory
             'slug' => fake()->username(),
             'email' => fake()->unique()->safeEmail(),
             'wishlist' => fake()->paragraph(1),
-            'status_pinjaman' => fake()->sentence(),
+            'borrowed_list' => fake()->sentence(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),

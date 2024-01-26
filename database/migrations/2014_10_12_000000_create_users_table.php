@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('wishlist')->nullable();
-            $table->string('status_pinjaman')->nullable();
+            $table->string('borrowed_list')->nullable();
             $table->boolean('is_admin')->default(false);
             // $table->string('foto_profil')->nullable()
             $table->rememberToken();
