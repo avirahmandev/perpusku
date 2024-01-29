@@ -26,13 +26,13 @@ Route::get('/register', [UserController::class, 'register'])->middleware('guest'
 
 Route::post('/register', [UserController::class, 'store']);
 
-Route::get('/wishlist', [UserController::class, 'wishlist'])->middleware('auth');
-
-Route::get('/borrowed', [UserController::class, 'borrowed'])->middleware('auth');
-
 Route::get('/login', [UserController::class, 'login'])->middleware('guest');
 
 Route::post('/login', [UserController::class, 'authenticate'])->name('login');
+
+Route::get('/wishlist', [UserController::class, 'wishlist'])->middleware('auth');
+
+Route::get('/borrowed', [UserController::class, 'borrowed'])->middleware('auth');
 
 Route::post('/logout', [UserController::class, 'logout']);
 

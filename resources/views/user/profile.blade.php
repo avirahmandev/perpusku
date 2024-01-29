@@ -22,11 +22,11 @@
                 <div class="list-group">
                     <a href="#edit-profil" class="list-group-item list-group-item-action" data-bs-toggle="offcanvas" data-bs-target="#edit-profil" role="button" aria-controls="edit-profil">Ubah Profil <span class="text-light-emphasis float-end">❯</span></a>
                     <a href="/wishlist" class="list-group-item list-group-item-action">Favorit <span class="text-light-emphasis float-end">❯</span></a>
-                    @can('admin')
                     <a href="/borrowed" class="list-group-item list-group-item-action">Buku Dipinjam <span class="text-light-emphasis float-end">❯</span></a>
+                    @can('admin')
                     <a href="/dashboard" class="list-group-item list-group-item-action">Dashboard Administrator<span class="text-light-emphasis float-end">❯</span></a>
-                    <a href="/" class="list-group-item list-group-item-action">Kembali ke Beranda<span class="text-light-emphasis float-end">❯</span></a>
                     @endcan
+                    <a href="/" class="list-group-item list-group-item-action">Kembali ke Beranda<span class="text-light-emphasis float-end">❯</span></a>
                 </div>
             </div>
             <form action="/logout" method="post">

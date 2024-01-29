@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->string('cover')->nullable();
+            $table->string('cover')->default('books-cover/cover_default.png');
             $table->string('judul');
             $table->string('slug');
             $table->string('penulis');

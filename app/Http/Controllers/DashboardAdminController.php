@@ -120,7 +120,8 @@ class DashboardAdminController extends Controller
 
             # if have old img, delete
             if($request->file('cover')) {
-                if($request->oldCover) {
+                # if not default image cover
+                if($request->oldCover && ($request->oldCover != 'books-cover/cover_default.png')) {
                     Storage::delete($request->oldCover);                
                 }
             }
@@ -137,7 +138,7 @@ class DashboardAdminController extends Controller
      */
     public function destroy(Book $book)
     {
-        if($book->cover) {
+        if($book->cover && ($book->cover != 'books-cover/cover_default.png')) {
             Storage::delete($book->cover);
         }
 
