@@ -11,15 +11,15 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/bootstrap-5.3.0-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style_user.css">
+    <link rel="stylesheet" type="text/css" href="/assets/bootstrap-5.3.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style_user.css">
 </head>
 <body>
     @include('partials/user_navbar')
 
     @yield('userContent')
 
-    <script src="assets/bootstrap-5.3.0-dist/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery-3.6.3.js"></script>
+    <script src="/assets/bootstrap-5.3.0-dist/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery-3.6.3.js"></script>
 </body>
 </html>

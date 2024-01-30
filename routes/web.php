@@ -40,6 +40,8 @@ Route::get('/profile', [UserController::class, 'profile'])->middleware('auth');
 
 Route::get('/books', [UserController::class, 'books'])->middleware('auth');
 
+Route::get('/book/{book}', [UserController::class, 'detail']);
+
 Route::get('/dashboard', function() {
 	return view('dashboard/index');
 })->middleware('admin');

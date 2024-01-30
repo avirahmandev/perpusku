@@ -40,12 +40,16 @@
 		            ?>
                     <div class="col-4 mb-3">
                         <div class="card">
-                            <img src="assets/img/background_blue.png" class="card-img-top" alt="">
-                            <div class="card-body">
-                                <h5 class="card-title text-truncate">{{ $books_filter->judul }}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ $books_filter->penulis }}</h6>
-                                <p class="card-text text-wrap excerp">{{ $books_filter->deskripsi }}</p>
-                            </div>
+                            <a href="book/{{ $books_filter->slug }}" style="text-decoration: none; color: inherit;">
+                                <div style="max-height: 145px; overflow: hidden;">
+                                    <img src="{{ asset('storage/'. $books_filter->cover) }}" class="card-img-top" alt="{{ $books_filter->judul }}">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title text-truncate">{{ $books_filter->judul }}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ $books_filter->penulis }}</h6>
+                                    <p class="card-text text-wrap excerp">{{ $books_filter->deskripsi }}</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     @endforeach

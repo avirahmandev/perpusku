@@ -47,6 +47,16 @@ class UserController extends Controller
         return view('user/filter_page', $data);
     }
 
+    public function detail(Book $book)
+    {
+        $data = [
+            "title" => "Detail",
+            "data"  => $book
+        ];
+
+        return view('user/detail', $data);
+    }
+
 
     public function wishlist()
     {

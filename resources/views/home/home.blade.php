@@ -47,14 +47,16 @@
                 ?>
                     <div class="col mb-2">
                         <div class="card">
-                            <div style="max-height: 145px; overflow: hidden;">
-                                <img src="{{ asset('storage/'. $buku_rekomendasi->cover) }}" class="card-img-top" alt="{{ $buku_rekomendasi->judul }}">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title text-truncate">{{ $buku_rekomendasi->judul }}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ $buku_rekomendasi->penulis }}</h6>
-                                <p class="card-text text-wrap excerp">{{ $buku_rekomendasi->deskripsi }}</p>
-                            </div>
+                            <a href="book/{{ $buku_rekomendasi->slug }}" style="text-decoration: none; color: inherit;">
+                                <div style="max-height: 145px; overflow: hidden;">
+                                    <img src="{{ asset('storage/'. $buku_rekomendasi->cover) }}" class="card-img-top" alt="{{ $buku_rekomendasi->judul }}">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title text-truncate">{{ $buku_rekomendasi->judul }}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ $buku_rekomendasi->penulis }}</h6>
+                                    <p class="card-text text-wrap excerp">{{ $buku_rekomendasi->deskripsi }}</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 @endif
@@ -80,14 +82,16 @@
                 ?>
                     <div class="col mb-2">
                         <div class="card">
-                            <div style="max-height: 145px; overflow: hidden;">
-                                <img src="{{ asset('storage/'. $buku_populer->cover) }}" class="card-img-top" alt="{{ $buku_populer->judul }}">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title text-truncate">{{ $buku_populer->judul }}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ $buku_populer->penulis }}</h6>
-                                <p class="card-text text-wrap excerp">{{ $buku_populer->deskripsi }}</p>
-                            </div>
+                            <a href="book/{{ $buku_populer->slug }}" style="text-decoration: none; color: inherit;">
+                                <div style="max-height: 145px; overflow: hidden;">
+                                    <img src="{{ asset('storage/'. $buku_populer->cover) }}" class="card-img-top" alt="{{ $buku_populer->judul }}">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title text-truncate">{{ $buku_populer->judul }}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ $buku_populer->penulis }}</h6>
+                                    <p class="card-text text-wrap excerp">{{ $buku_populer->deskripsi }}</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 @endif
@@ -99,6 +103,7 @@
     <div class="container">
         <h2 class="mb-4">Unggulan</h2>
         <div class="card card-unggulan1 col-md-9">
+            <a href="book/{{ $data[0]->slug }}" style="text-decoration: none; color: inherit;">
             <div class="row">
                 <div class="col-md-8">
                     <div class="card-body">
@@ -110,8 +115,10 @@
                     <img src="{{ asset('storage/'. $data[0]->cover) }}" class="img-unggulan img-fluid" alt="{{ $data[0]->judul }}">
                 </div>
             </div>
+            </a>
         </div>
         <div class="card card-unggulan2 col-md-9">
+            <a href="book/{{ $data[1]->slug }}" style="text-decoration: none; color: inherit;">
             <div class="row">
                 <div class="col-md-4">
                     <img src="{{ asset('storage/'. $data[1]->cover) }}" class="img-unggulan img-fluid" alt="{{ $data[1]->judul }}">
@@ -123,6 +130,7 @@
                     </div>
                 </div>
             </div>
+            </a>
         </div>
     </div>
 </section>
@@ -142,14 +150,16 @@
             ?>
             <div class="col mb-2">
                 <div class="card">
-                    <div style="max-height: 145px; overflow: hidden;">
-                        <img src="{{ asset('storage/'. $book->cover) }}" class="card-img-top" alt="{{ $book->judul }}">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-truncate">{{ $book->judul }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ $book->penulis }}</h6>
-                        <p class="card-text excerp">{{ $book->deskripsi }}</p>
-                    </div>
+                    <a href="book/{{ $book->slug }}" style="text-decoration: none; color: inherit;">
+                        <div style="max-height: 145px; overflow: hidden;">
+                            <img src="{{ asset('storage/'. $book->cover) }}" class="card-img-top" alt="{{ $book->judul }}">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate">{{ $book->judul }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ $book->penulis }}</h6>
+                            <p class="card-text excerp">{{ $book->deskripsi }}</p>
+                        </div>
+                    </a>
                 </div>
             </div>
             @endforeach
