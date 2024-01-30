@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('halaman')->default(0);
             $table->boolean('tipe')->default(false);
             $table->string('penerbit');
-            // $table->string('file_pdf');
+            $table->string('file_pdf')->nullable();
             $table->foreignId('category_id');
             $table->boolean('populer')->default(false);
             $table->boolean('rekomendasi')->default(false);

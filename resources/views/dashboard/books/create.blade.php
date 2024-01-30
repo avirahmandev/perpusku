@@ -52,7 +52,7 @@
                     	  <textarea name="deskripsi" class="form-control" id="deskripsi" rows="2"  required>{{ old('deskripsi') }}</textarea>
                     	</div>
                     </div>
-                    <div class="row mt-3 g-3">
+                    <div class="row mt-2 g-3">
                     	<div class="col-4">
 		                    <label for="category" class="form-label">Kategori</label>
 		                    <select class="form-select" name="category_id" id="category" required>
@@ -81,16 +81,28 @@
 							<label class="btn btn-outline-danger" for="rekomendasi-tidak">Tidak</label>
                     	</div>	
                     </div>
-                    <div class="col mt-3">
-                    	<label for="cover" class="form-label">Sampul Buku</label>
-                    	<img class="img-preview img-fluid mb-3 col-sm-4">
-						<input class="form-control @error('cover') is-invalid @enderror" name="cover" type="file" id="cover" onchange="previewImage()" required>
-						@error('cover')
-		                    <div class="invalid-feedback">
-		                        {{ $message }}
-		                    </div>
-		                @enderror
-                    </div>
+                    <div class="row mt-2 g-3">
+	                    <div class="col mt-3">
+	                    	<label for="cover" class="form-label">Sampul Buku</label>
+							<input class="form-control @error('cover') is-invalid @enderror" name="cover" type="file" id="cover" onchange="previewImage()" required>
+							<br>
+	                    	<img class="img-preview img-fluid col-sm-5 rounded-1">
+							@error('cover')
+			                    <div class="invalid-feedback">
+			                        {{ $message }}
+			                    </div>
+			                @enderror
+	                    </div>
+	                    <div class="col mt-3">
+	                    	<label for="file_pdf" class="form-label">File PDF</label>
+							<input class="form-control @error('file_pdf') is-invalid @enderror" name="file_pdf" type="file" id="file_pdf">
+							@error('file_pdf')
+			                    <div class="invalid-feedback">
+			                        {{ $message }}
+			                    </div>
+			                @enderror
+	                    </div>
+                	</div>
                     <button type="submit" class="btn btn-lg btn-primary text-center px-5 mt-4 d-grid mx-auto">Simpan</button>
                 </form>
             </div>

@@ -46,20 +46,23 @@ class DashboardAdminController extends Controller
             'halaman'       => 'required|min:0|max:5000',
             'tipe'          => 'required',
             'penerbit'      => 'required',
-            // 'file_pdf'      => 'required',
+            'file_pdf'      => 'mimes:pdf|max:10240',
             'category_id'   => 'required',
             'populer'       => 'required',
             'rekomendasi'   => 'required'
         ],
         [
-            'required'      => 'Kolom wajib diisi!',
-            'slug.unique'   => 'Permalink telah digunakan, bersifat unik. Tambahkan karakter lagi di akhir!',
-            'cover.max'     => 'Upload gambar sampul maksimal 1mb.',
-            'cover.image'   => 'File harus berformat gambar!'
+            'required'          => 'Kolom wajib diisi!',
+            'slug.unique'       => 'Permalink telah digunakan, bersifat unik. Tambahkan karakter lagi di akhir!',
+            'cover.max'         => 'Upload gambar sampul maksimal 1mb.',
+            'cover.image'       => 'File harus berformat gambar!',
+            'file_pdf.mimes'    => 'File harus berformat pdf!',
+            'file_pdf.max'      => 'Upload file pdf maksimal 10mb.'
         ]);
 
-        # store the image file
+        # store the cover & pdf file
         $validatedData['cover'] = $request->file('cover')->store('books-cover');
+        $validatedData['file_pdf'] = $request->file('file_pdf')->store('books-pdf');
 
         Book::create($validatedData);
         return redirect('/dashboard/books')->with('success', 'Berhasil menambahkan buku!');
@@ -96,17 +99,19 @@ class DashboardAdminController extends Controller
             'halaman'       => 'required|min:0|max:5000',
             'tipe'          => 'required',
             'penerbit'      => 'required',
-            // 'file_pdf'      => 'required',
+            'file_pdf'      => 'mimes:pdf|max:10240',
             'category_id'   => 'required',
             'populer'       => 'required',
             'rekomendasi'   => 'required'
         ];
 
         $customMessages = [
-            'required'      => 'Kolom wajib diisi!',
-            'slug.unique'   => 'Permalink telah digunakan, bersifat unik. Tambahkan karakter lagi di akhir!',
-            'cover.max'     => 'Upload gambar sampul maksimal 1mb.',
-            'cover.image'   => 'File harus berformat gambar!'
+            'required'          => 'Kolom wajib diisi!',
+            'slug.unique'       => 'Permalink telah digunakan, bersifat unik. Tambahkan karakter lagi di akhir!',
+            'cover.max'         => 'Upload gambar sampul maksimal 1mb.',
+            'cover.image'       => 'File harus berformat gambar!',
+            'file_pdf.mimes'    => 'File harus berformat pdf!',
+            'file_pdf.max'      => 'Upload file pdf maksimal 10mb.'
         ];
 
         if($request->slug != $book->slug) {
@@ -129,6 +134,19 @@ class DashboardAdminController extends Controller
             $validatedData['cover'] = $request->file('cover')->store('books-cover');
         }
 
+        # if have new pdf, store
+        if ($request->file('file_pdf')) {
+            
+            # if have old pdf, delete
+            if($request->file('file_pdf')) {
+                if($request->oldFilePdf) {
+                    Storage::delete($request->oldFilePdf);
+                }
+            }
+
+            $validatedData['file_pdf'] = $request->file('file_pdf')->store('books-pdf');
+        }
+
         Book::where('id', $book->id)->update($validatedData);
         return redirect('/dashboard/books')->with('success', 'Berhasil memperbarui informasi buku!');
     }
@@ -138,10 +156,17 @@ class DashboardAdminController extends Controller
      */
     public function destroy(Book $book)
     {
+        # delete cover
         if($book->cover && ($book->cover != 'books-cover/cover_default.png')) {
             Storage::delete($book->cover);
         }
 
+        # delete pdf
+        if($book->file_pdf) {
+            Storage::delete($book->file_pdf);
+        }
+
+        # delete book
         Book::destroy($book->id);
         return redirect('/dashboard/books')->with('success', 'Buku berhasil dipindahkan ke Trash!');
     }

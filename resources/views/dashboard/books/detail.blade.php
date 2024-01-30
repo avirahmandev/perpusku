@@ -5,7 +5,7 @@
 		<br>
 		<div class="row">
             <div class="card p-5 mx-auto">
-                <h2>Detail</h2>
+                <h2>Detail Buku</h2>
                 <div class="row">
                 <a href="/dashboard/books" class="btn btn-success col-2">
                     <i class="bi bi-arrow-left"></i> Kembali
@@ -20,13 +20,9 @@
                 </form>
                 </div>
                 <div class="card col-lg-10 mx-auto my-1">
-                    @if($cover)
-                        <div style="max-height: 380px; overflow: hidden;">
-                            <img src="{{ asset('storage/'. $cover) }}" class="card-img-top" alt="">
-                        </div>
-                    @else
-                        <img src="/assets/img/background_blue.png" class="card-img-top" alt="">
-                    @endif
+                    <div style="max-height: 380px; overflow: hidden;">
+                        <img src="{{ asset('storage/'. $cover) }}" class="card-img-top" alt="{{ $penulis }}">
+                    </div>
                 </div>
                 <div class="card-body">
                     <h6 class="card-subtitle mb-2 text-muted"> {{ $penulis }} </h6>
@@ -41,7 +37,7 @@
                             <span>{{ \App\Models\Category::find($category_id)->name; }}</span>
                             <br><br>
                             <h6>Tipe</h6>
-                            <span>{{ ($tipe == false) ? 'E-Book' : 'Cetak' }}</span>
+                            <span>{{ ($tipe ? 'Cetak' : 'E-Book') }}</span>
                         </div>
                         <div class="col-6">
                             <h6>Penerbit</h6>
@@ -51,9 +47,12 @@
                             <span>{{ ($halaman != 0) ? $halaman : '-' }}</span>
                         </div>
                     </div>
-
                 </div>
-                <button class="btn btn-success mx-auto">Download PDF</button>
+                @if($tipe)
+                    <button class="btn btn-success mx-auto" type="button" disabled>Download PDF</button>
+                @else
+                    <button class="btn btn-success mx-auto" type="button"  onclick="window.open('{{ asset('storage/'. $file_pdf) }}')">Download PDF</button>
+                @endif
             </div>
         </div>
 	</div>

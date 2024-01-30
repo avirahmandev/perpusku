@@ -53,7 +53,7 @@
                     	  <textarea name="deskripsi" class="form-control" id="deskripsi" rows="2" required>{{ old('deskripsi', $book->deskripsi) }}</textarea>
                     	</div>
                     </div>
-                    <div class="row mt-3 g-3">
+                    <div class="row mt-2 g-3">
                     	<div class="col-4">
 		                    <label for="category" class="form-label">Kategori</label>
 		                    <select class="form-select" name="category_id" id="category" required>
@@ -82,21 +82,34 @@
 							<label class="btn btn-outline-danger" for="rekomendasi-tidak">Tidak</label>
                     	</div>	
                     </div>
-                    <div class="col mt-3">
-                    	<label for="cover" class="form-label">Sampul Buku</label>
-                    	<input type="hidden" name="oldCover" value="{{ $book->cover }}">
-                    	@if($book->cover)
-                    		<img src="{{ asset('storage/'. $book->cover) }}" class="img-preview img-fluid mb-3 col-sm-4 d-block">
-                    	@else
-                    		<img class="img-preview img-fluid mb-3 col-sm-4">
-                    	@endif
-						<input class="form-control @error('cover') is-invalid @enderror" name="cover" type="file" id="cover" onchange="previewImage()">
-						@error('cover')
-		                    <div class="invalid-feedback">
-		                        {{ $message }}
-		                    </div>
-		                @enderror
-                    </div>
+                    <div class="row mt-2 g-3">
+	                    <div class="col mt-3">
+	                    	<label for="cover" class="form-label">Sampul Buku</label>
+	                    	<input type="hidden" name="oldCover" value="{{ $book->cover }}">
+							<input class="form-control @error('cover') is-invalid @enderror" name="cover" type="file" id="cover" onchange="previewImage()">
+							<br>
+	                    	@if($book->cover)
+	                    		<img src="{{ asset('storage/'. $book->cover) }}" class="img-preview img-fluid col-sm-5 rounded-1 d-block">
+	                    	@else
+	                    		<img class="img-preview img-fluid rounded-1 col-sm-5">
+	                    	@endif
+							@error('cover')
+			                    <div class="invalid-feedback">
+			                        {{ $message }}
+			                    </div>
+			                @enderror
+	                    </div>
+	                    <div class="col mt-3">
+	                    	<label for="file_pdf" class="form-label">File PDF</label>
+	                    	<input type="hidden" name="oldFilePdf" value="{{ $book->file_pdf }}">
+							<input class="form-control @error('file_pdf') is-invalid @enderror" name="file_pdf" type="file" id="file_pdf">
+							@error('file_pdf')
+			                    <div class="invalid-feedback">
+			                        {{ $message }}
+			                    </div>
+			                @enderror
+	                    </div>
+                	</div>
                     <button type="submit" class="btn btn-lg btn-primary text-center px-5 mt-4 d-grid mx-auto">Simpan</button>
                 </form>
             </div>

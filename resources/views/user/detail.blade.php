@@ -24,7 +24,7 @@
                             <span>{{ \App\Models\Category::find($data->category_id)->name; }}</span>
                             <br><br>
                             <h6>Tipe</h6>
-                            <span>{{ ($data->tipe == false) ? 'E-Book' : 'Cetak' }}</span>
+                            <span>{{ ($data->tipe ? 'Cetak' : 'E-Book') }}</span>
                         </div>
                         <div class="col-6">
                             <h6>Penerbit</h6>
@@ -34,9 +34,12 @@
                             <span>{{ ($data->halaman != 0) ? $data->halaman : '-' }}</span>
                         </div>
                     </div>
-
                 </div>
-                <button class="btn btn-success mx-auto">Download PDF</button>
+                @if($data->tipe)
+                    <button class="btn btn-success mx-auto" type="button" disabled>Download PDF</button>
+                @else
+                    <button class="btn btn-success mx-auto" type="button"  onclick="window.open('{{ asset('storage/'. $data->file_pdf) }}')">Download PDF</button>
+                @endif
             </div>
         </div>
         <br>
