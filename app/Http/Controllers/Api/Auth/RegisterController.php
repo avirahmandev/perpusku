@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
@@ -14,13 +14,18 @@ class RegisterController extends Controller
     public function __invoke(RegisterRequest $request)
     {
 
-        User::create([
+        $registered = User::create([
             "nama_lengkap"  => request('nama_lengkap'),
             "email"  => request('email'),
             "slug"  => request('slug'),
             "password"  => request('password')
         ]);
 
-        return response("Daftar Berhasil!");
+        $token = $registered->createToken("perpusku-api")->plainTextToken;
+
+        return response()->json([
+            "success"   => "Daftar berhasil!",
+            "token"     => $token
+        ]);
     }
 }
