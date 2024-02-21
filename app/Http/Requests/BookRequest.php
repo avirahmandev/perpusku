@@ -23,14 +23,14 @@ class BookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'cover'         => 'image|file|max:1024',
+            'cover'         => 'image|file|max:1024',
             'judul'         => 'required|max:255',
             'penulis'       => 'required',
             'deskripsi'     => 'required|max:1000',
             'halaman'       => 'required|min:0|max:5000',
             'tipe'          => 'required',
             'penerbit'      => 'required',
-            // 'file_pdf'      => 'mimes:pdf|max:10240',
+            'file_pdf'      => 'mimes:pdf|max:10240',
             'category_id'   => 'required',
             'populer'       => 'required',
             'rekomendasi'   => 'required'
@@ -42,10 +42,10 @@ class BookRequest extends FormRequest
         return [
             'required'          => 'Kolom wajib diisi!',
             'slug.unique'       => 'Permalink telah digunakan, bersifat unik. Tambahkan karakter lagi di akhir!',
-            // 'cover.max'         => 'Upload gambar sampul maksimal 1mb.',
-            // 'cover.image'       => 'File harus berformat gambar!',
-            // 'file_pdf.mimes'    => 'File harus berformat pdf!',
-            // 'file_pdf.max'      => 'Upload file pdf maksimal 10mb.'
+            'cover.max'         => 'Upload gambar sampul maksimal 1mb.',
+            'cover.image'       => 'File harus berformat gambar!',
+            'file_pdf.mimes'    => 'File harus berformat pdf!',
+            'file_pdf.max'      => 'Upload file pdf maksimal 10mb.'
         ];
     }
 }

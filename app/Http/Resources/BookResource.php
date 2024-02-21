@@ -18,7 +18,7 @@ class BookResource extends JsonResource
         
         return [
             'id'            => $this->id,
-            // 'cover'         => $this->cover,
+            'cover'         => $this->cover,
             'judul'         => $this->judul,
             'slug'          => $this->slug,
             'penulis'       => $this->penulis,
@@ -26,7 +26,7 @@ class BookResource extends JsonResource
             'halaman'       => $this->halaman,
             'tipe'          => $this->tipe,
             'penerbit'      => $this->penerbit,
-            // 'file_pdf'      => $this->file_pdf,
+            'file_pdf'      => $this->file_pdf,
             'category_id'   => $this->category_id,
             'populer'       => $this->populer,
             'rekomendasi'   => $this->rekomendasi,

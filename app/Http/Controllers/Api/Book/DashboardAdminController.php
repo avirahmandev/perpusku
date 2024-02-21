@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Http\Requests\BookRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BookResource;
+use Illuminate\Support\Facades\Storage;
 
 
 class DashboardAdminController extends Controller
@@ -26,8 +27,18 @@ class DashboardAdminController extends Controller
      */
     public function store(BookRequest $request)
     {
+        // validated properties independently
+        $request->validate([
+            'cover'     => 'required',
+            'slug'      => 'required|unique:books',
+        ],
+        [
+            'cover.required'    => 'Gambar wajib diisi!',
+            'slug.unique'       => 'Permalink telah digunakan, bersifat unik. Tambahkan karakter lagi di akhir!'
+        ]);
+
         $validatedData = [
-            // 'cover'         => request('cover'),
+            'cover'         => request()->file('cover')->store('books-cover'),
             'judul'         => request('judul'),
             'slug'          => request('slug'),
             'penulis'       => request('penulis'),
@@ -35,7 +46,7 @@ class DashboardAdminController extends Controller
             'halaman'       => request('halaman'),
             'tipe'          => request('tipe'),
             'penerbit'      => request('penerbit'),
-            // 'file_pdf'      => request('file_pdf'),
+            'file_pdf'      => request()->file('file_pdf')->store('books-pdf'),
             'category_id'   => request('category_id'),
             'populer'       => request('populer'),
             'rekomendasi'   => request('rekomendasi')
@@ -59,7 +70,7 @@ class DashboardAdminController extends Controller
     {
 
         return new BookResource($book);
-
+        
     }
 
     /**
@@ -69,7 +80,6 @@ class DashboardAdminController extends Controller
     {
 
         $validatedData = [
-            // 'cover'         => request('cover'),
             'judul'         => request('judul'),
             'slug'          => request('slug'),
             'penulis'       => request('penulis'),
@@ -77,7 +87,6 @@ class DashboardAdminController extends Controller
             'halaman'       => request('halaman'),
             'tipe'          => request('tipe'),
             'penerbit'      => request('penerbit'),
-            // 'file_pdf'      => request('file_pdf'),
             'category_id'   => request('category_id'),
             'populer'       => request('populer'),
             'rekomendasi'   => request('rekomendasi')
@@ -86,6 +95,30 @@ class DashboardAdminController extends Controller
         // validate more, check if have new slug and unique
         if ($request->slug != $book->slug) {
             $request->validate(['slug' => 'required|unique:books']);
+        }
+
+        // if have new cover
+        if ($request->file('cover')) {
+
+            // if hava old cover and not default image, delete
+            if ($request->oldCover && ($request->oldCover != 'books-cover/cover_default.png')) {
+                Storage::delete($request->oldCover);
+            }
+
+            // store new cover
+            $validatedData['cover'] = $request->file('cover')->store('books-cover');
+        }
+
+        // if have new pdf
+        if ($request->file('file_pdf')) {
+
+            // delete old pdf file if exist
+            if ($request->oldFilePdf) {
+                Storage::delete($request->oldFilePdf);
+            }
+
+            // store new pdf
+            $validatedData['file_pdf'] = $request->file('file_pdf')->store('books-pdf');
         }
 
         // fill object field with array validatedData
@@ -103,6 +136,16 @@ class DashboardAdminController extends Controller
      */
     public function destroy(Book $book)
     {
+
+        // delete cover
+        if($book->cover && ($book->cover != 'books-cover/cover_default.png')) {
+            Storage::delete($book->cover);
+        }
+
+        // delete pdf
+        if($book->file_pdf) {
+            Storage::delete($book->file_pdf);
+        }
 
         // delete book function
         $book->delete();

@@ -7,7 +7,7 @@
             <div class="card p-5 mx-auto">
                 <h2>Perbarui informasi buku</h2>
                 <form action="/dashboard/books/{{ $book->slug }}" method="post" class="form mt-2" enctype="multipart/form-data">
-                	@method('put')
+                	@method('patch')
                     @csrf
                     <div class="row g-3">
                     	<div class="col-7">
