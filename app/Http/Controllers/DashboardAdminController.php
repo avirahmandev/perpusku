@@ -35,7 +35,10 @@ class DashboardAdminController extends Controller
     public function store(Request $request)
     {
 
-        // $request->file('cover')->store('books-cover');
+        // check if book type not e-book, validate pdf file
+        if (!$request('tipe')) {
+            $request->validate(['file_pdf' => 'required']);
+        }
 
         $validatedData = $request->validate([
             'cover'         => 'required|image|file|max:1024',
@@ -60,9 +63,12 @@ class DashboardAdminController extends Controller
             'file_pdf.max'      => 'Upload file pdf maksimal 10mb.'
         ]);
 
-        # store the cover & pdf file
+        # store the cover & pdf file, if exist
         $validatedData['cover'] = $request->file('cover')->store('books-cover');
-        $validatedData['file_pdf'] = $request->file('file_pdf')->store('books-pdf');
+        // if have pdf file, store
+        if($request->hasFile('file_pdf')) {
+            $validatedData['file_pdf'] = $request->file('file_pdf')->store('books-pdf');
+        }
 
         Book::create($validatedData);
         return redirect('/dashboard/books')->with('success', 'Berhasil menambahkan buku!');
@@ -156,18 +162,10 @@ class DashboardAdminController extends Controller
      */
     public function destroy(Book $book)
     {
-        # delete cover
-        if($book->cover && ($book->cover != 'books-cover/cover_default.png')) {
-            Storage::delete($book->cover);
-        }
 
-        # delete pdf
-        if($book->file_pdf) {
-            Storage::delete($book->file_pdf);
-        }
-
-        # delete book
+        # store book to trash bin
         Book::destroy($book->id);
+        
         return redirect('/dashboard/books')->with('success', 'Buku berhasil dipindahkan ke Trash!');
     }
 }

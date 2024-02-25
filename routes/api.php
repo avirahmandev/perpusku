@@ -25,4 +25,4 @@ Route::post('register', RegisterController::class);
 
 Route::post('login', LoginController::class);
 
-Route::apiResource('dashboard', DashboardAdminController::class)->middleware('auth:sanctum')->parameters(['dashboard' => 'book']);
+Route::apiResource('dashboard', DashboardAdminController::class)->middleware('auth:sanctum')->parameters(['dashboard' => 'book'])->withTrashed();

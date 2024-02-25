@@ -26,6 +26,7 @@ return new class extends Migration
             $table->boolean('populer')->default(false);
             $table->boolean('rekomendasi')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

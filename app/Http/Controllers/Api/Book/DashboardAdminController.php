@@ -137,21 +137,11 @@ class DashboardAdminController extends Controller
     public function destroy(Book $book)
     {
 
-        // delete cover
-        if($book->cover && ($book->cover != 'books-cover/cover_default.png')) {
-            Storage::delete($book->cover);
-        }
-
-        // delete pdf
-        if($book->file_pdf) {
-            Storage::delete($book->file_pdf);
-        }
-
-        // delete book function
-        $book->delete();
+        # store book to trash bin
+        Book::destroy($book->id);
 
         return response()->json([
-            "data"      => "Buku telah dihapus!",
+            "data"      => "Buku telah dipindahkan ke Trash!",
             "status"    => "success"
         ]);
     }

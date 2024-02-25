@@ -4,6 +4,7 @@ use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TrashedBookController;
 use App\Http\Controllers\DashboardAdminController;
 /*
 |--------------------------------------------------------------------------
@@ -46,8 +47,10 @@ Route::get('/dashboard', function() {
 	return view('dashboard/index');
 })->middleware('admin');
 
-Route::get('/dashboard/trash', function() {
-    return view('/dashboard/books/trash');
-})->middleware('admin');
+Route::get('/dashboard/trash', [TrashedBookController::class, 'archive'])->middleware('admin');
+
+Route::post('/dashboard/trash/{book}/restore', [TrashedBookController::class, 'restore'])->withTrashed()->middleware('admin');
+
+Route::delete('/dashboard/trash/{book}', [TrashedBookController::class, 'destroy'])->withTrashed()->middleware('admin');
 
 Route::resource('/dashboard/books', DashboardAdminController::class)->middleware('admin');
