@@ -25,3 +25,26 @@
             {{-- {{ $data->links() }} --}}
     </div>
 </header>
+<script>
+window.addEventListener('load', function() {
+
+    $('.card').hover(
+        function () {
+            $(this).addClass("shadow");
+            $(this).css({
+                transition: "transform 0.2s",
+                transform: "translateY(-5px)",
+            });
+        },
+        function () {
+            $(this).removeClass("shadow");
+            $(this).css({
+                transition: "transform 0.2s",
+                transform: "translateY(0)",
+            });
+        },
+    );
+
+});
+</script>
+@endSection

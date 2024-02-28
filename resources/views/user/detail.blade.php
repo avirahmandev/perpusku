@@ -6,6 +6,11 @@
 		<div class="row col-9 mx-auto">
             <div class="card p-5">
                 <h2>Detail Buku</h2>
+                <div class="row ms-1">
+                    <button class="btn btn-success col-lg-2" onclick="history.back();">
+                        <i class="bi bi-arrow-left"></i> Kembali
+                    </button>
+                </div>
                 <div class="card col-lg-10 mx-auto my-1">
                     <div style="max-height: 380px; overflow: hidden;">
                         <img src="{{ asset('storage/'. $data->cover) }}" class="card-img-top" alt="{{ $data->judul }}">

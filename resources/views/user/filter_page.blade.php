@@ -39,7 +39,7 @@
 		                }
 		            ?>
                     <div class="col-4 mb-3">
-                        <div class="card">
+                        <div class="card card-hover">
                             <a href="book/{{ $books_filter->slug }}" style="text-decoration: none; color: inherit;">
                                 <div style="max-height: 145px; overflow: hidden;">
                                     <img src="{{ asset('storage/'. $books_filter->cover) }}" class="card-img-top" alt="{{ $books_filter->judul }}">
@@ -62,3 +62,26 @@
         </div>
     </div>
 </header>
+<script>
+window.addEventListener('load', function() {
+
+    $('.card-hover').hover(
+        function () {
+            $(this).addClass("shadow");
+            $(this).css({
+                transition: "transform 0.2s",
+                transform: "translateY(-5px)",
+            });
+        },
+        function () {
+            $(this).removeClass("shadow");
+            $(this).css({
+                transition: "transform 0.2s",
+                transform: "translateY(0)",
+            });
+        },
+    );
+
+});
+</script>
+@endSection
