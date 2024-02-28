@@ -35,9 +35,14 @@ class DashboardAdminController extends Controller
     public function store(Request $request)
     {
 
-        // check if book type not e-book, validate pdf file
-        if (!$request('tipe')) {
-            $request->validate(['file_pdf' => 'required']);
+        // check if book type e-book, validate pdf file
+        if (!$request->tipe) {
+            $request->validate([
+                'file_pdf' => 'required'
+            ],
+            [
+                'required' => 'Kolom wajib diisi!'
+            ]);
         }
 
         $validatedData = $request->validate([

@@ -1,6 +1,7 @@
 @extends('layouts/main_layout')
 
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <header class="container-fluid bg-primary" id="header">
     <div class="container">
         <h1 class="slogan text-light"><span>Pinjam Buku Terbaru,</span><br>Teratas, dan Terlengkap<br>hanya di PERPUSKU
@@ -26,9 +27,29 @@
         <div onclick="location.href={{ auth()->check() ? '\'/wishlist\'' : '\'/login\'' }}" class="circle rounded-circle text-center d-flex"><i class="bi bi-bookmark-heart"></i><span>Favorit</span></div>
         <div onclick="location.href={{ auth()->check() ? '\'/borrowed\'' : '\'/login\'' }}" class="circle rounded-circle text-center d-flex"><i class="bi bi-journal-bookmark"></i><span>Buku Dipinjam</span></div>
         <div onclick="location.href='#'" class="circle rounded-circle text-center d-flex"><i class="bi bi-exclamation-circle"></i><span>Panduan</span></div>
-        <div onclick="location.href='#'" class="circle rounded-circle text-center d-flex"><i class="bi bi-search"></i><span>Cari</span></div>
+        <div onclick="location.href='#'" class="circle rounded-circle text-center d-flex" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="bi bi-search"></i><span>Cari</span></div>
     </div>
 </section>
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <form class="col-12" action="/books">
+                    <input type="text" class="form-control" name="search" id="search" placeholder="Cari buku..">
+                </form>
+            </div>
+            <div class="modal-body" style="min-height: 50vh; max-height: 50vh; overflow-y: auto;">
+                <div class="m-auto text-center">
+                    <small>Tidak ada hasil.</small>
+                </div>
+            </div>
+            <div class="modal-footer py-2">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
 <section class="rekomendasi-section" id="rekomendasi">
     <div class="container">
         <h2>Buku Rekomendasi</h2>
@@ -166,4 +187,63 @@
         </div>
     </div>
 </section>
+<script>
+const searchField = document.querySelector('#search');
+searchField.addEventListener('keyup', function() {
+    search();
+});
+
+function search() {
+
+    var keyword = $('#search').val();
+    $.post('{{ route("books/search") }}',
+    {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        keyword: keyword
+    },
+
+    function(data) {
+        table_post_row(data);
+    });
+}
+
+// table row with ajax
+function table_post_row(res) {
+    
+    let htmlView = '';
+
+    if(res.books.length <= 0) {
+        htmlView += `
+            <div class="m-auto text-center">
+                <small>Tidak ada hasil.</small>
+            </div>
+        `;
+    }
+
+    for(let i=0; i<res.books.length; i++) {
+        htmlView += `
+            <div class="card mb-1" style="max-height: 15vh;">
+                <div class="row g-0">
+                    <div class="col-3">
+                        <div style="height: 80px; background-size: fill; overflow: hidden;">
+                            <img src="{{ asset('storage/` + res.books[i].cover + `') }}" class="img-fluid rounded-start" alt="` + res.books[i].judul + `" style="width: 100%; height: 100%;">
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card-body py-1 px-2">
+                            <a href="book/` + res.books[i].slug + `" style="text-decoration: none;">
+                                <h5 class="card-title text-truncate">` + res.books[i].judul + `</h5>
+                            </a>
+                            <h6 class="card-subtitle text-muted">` + res.books[i].penulis + `</h6>
+                            <p class="card-text text-truncate">` + res.books[i].deskripsi + `</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    $('.modal-body').html(htmlView);
+}
+</script>
 @endSection

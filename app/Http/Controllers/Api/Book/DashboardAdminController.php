@@ -37,6 +37,16 @@ class DashboardAdminController extends Controller
             'slug.unique'       => 'Permalink telah digunakan, bersifat unik. Tambahkan karakter lagi di akhir!'
         ]);
 
+        // check if book type e-book, validate pdf file
+        if (!$request->tipe) {
+            $request->validate([
+                'file_pdf' => 'required'
+            ],
+            [
+                'required' => 'Kolom wajib diisi!'
+            ]);
+        }
+
         $validatedData = [
             'cover'         => request()->file('cover')->store('books-cover'),
             'judul'         => request('judul'),

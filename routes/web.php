@@ -41,6 +41,8 @@ Route::get('/profile', [UserController::class, 'profile'])->middleware('auth');
 
 Route::get('/books', [UserController::class, 'books'])->middleware('auth');
 
+Route::post('/books/search', [UserController::class, 'search'])->name('books/search');
+
 Route::get('/book/{book}', [UserController::class, 'detail']);
 
 Route::get('/dashboard', function() {

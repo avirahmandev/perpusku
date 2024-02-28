@@ -47,6 +47,21 @@ class UserController extends Controller
         return view('user/filter_page', $data);
     }
 
+    public function search(Request $request)
+    {
+        $books = Book::all();
+
+        if($request->keyword != '') {
+            $books = Book::where('judul', 'LIKE', '%'. $request->keyword. '%')->get();
+        } else {
+            $books = [];
+        }
+
+        return response()->json([
+            'books' => $books
+        ]);
+    }
+
     public function detail(Book $book)
     {
         $data = [
