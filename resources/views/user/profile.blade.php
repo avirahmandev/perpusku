@@ -6,13 +6,13 @@
         <div class="row">
             <div class="col-4">
                 <div class="card">
-                    <img src="assets/img/background_blue.png" class="card-img-top" alt="">
+                    <img src="assets/img/background_blue.png" class="card-img-top" alt="profile">
                     <div class="card-body">
                         <h5 class="card-title">{{ auth()->user()->nama_lengkap }}</h5>
                         <p class="card-text">Bio pengguna. Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Alamat : Jl. Hati-hati di jalan - tulus</li>
+                        <li class="list-group-item">Alamat : Jl. Hati-hati di jalan</li>
                         <li class="list-group-item">No telp : 085-xxxx-xxxx</li>
                         <li class="list-group-item">Jenis Kelamin : Pria</li>
                     </ul>

@@ -1,5 +1,5 @@
 <div class="list-group rounded-0 col-3 fixed-top">
-	<span class="list-group-item text-light bg-dark px-4" style="padding: 4.5% 0;">
+	<span class="text-light bg-dark px-4" style="padding: 4.5% 0;">
 		<h5 class="m-0 p-0">Dashboard</h5>
 	</span>
   	<a href="/dashboard" class="list-group-item list-group-item-action border-0 border-bottom {{ Request::is('dashboard') ? 'active' : '' }} py-2 px-4" aria-current="true">
