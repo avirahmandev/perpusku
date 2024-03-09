@@ -146,14 +146,14 @@ class BookSeeder extends Seeder
         ]);
 
         Book::factory()->create([
-            'judul'     => 'Madilog Materialisme, Dialektika, Dan Logika',
-            'slug'      => 'madilog-materialisme-dialektika-dan-logika',
-            'penulis'   => 'Tan Malaka',
+            'judul'     => 'Linux Command Guide',
+            'slug'      => 'linux-command-guide',
+            'penulis'   => 'Linus Torvalds',
             'tipe'      => false,
             'penerbit'  => 'GoalKicker',
             'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-            'category_id' => 3,
-            'populer' => false,
+            'category_id' => 1,
+            'populer' => true,
             'rekomendasi' => true,
         ]);
     }

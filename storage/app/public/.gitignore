@@ -1,2 +1,5 @@
 *
+!books-cover/
+!books-pdf/
+!cover_default.png
 !.gitignore

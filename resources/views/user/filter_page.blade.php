@@ -55,7 +55,7 @@
                     @endforeach
                 </div>
                 @if($data->count() == 0)
-                	<p class="text-center fs-4">Buku tidak ditemukan.</p>
+                	<p class="text-center fs-4 mx-auto">Buku tidak ditemukan.</p>
                 @endif
             {{ $data->links() }}
             </div>

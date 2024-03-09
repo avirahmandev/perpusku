@@ -56,6 +56,7 @@
         <a href="/books?sortby=rekomendasi">Lihat Semua</a>
         <div class="daftar-rekomendasi mt-1 row row-cols-md-4 g-4 justify-content-start align-items-center d-flex flex-row flex-nowrap overflow-x-auto horizontal-scroll">
             <!-- Card -->
+            @if($data->count() > 0)
             <?php $j=0; ?>
             @foreach($data as $buku_rekomendasi)
                 @if($buku_rekomendasi->rekomendasi)
@@ -82,6 +83,9 @@
                     </div>
                 @endif
             @endforeach
+            @else
+            <p class="text-center fs-5 mx-auto">Buku tidak ditemukan.</p>
+            @endif
         </div>
     </div>
 </section>
@@ -91,6 +95,7 @@
         <a href="/books?sortby=populer">Lihat Semua</a>
         <div class="daftar-populer mt-1 row row-cols-md-4 g-4 justify-content-start align-items-center d-flex flex-row flex-nowrap overflow-x-auto horizontal-scroll">
             <!-- Card -->
+            @if($data->count() > 0)
             <?php $j=0; ?>
             @foreach($data as $buku_populer)
                 @if($buku_populer->populer)
@@ -117,12 +122,16 @@
                     </div>
                 @endif
             @endforeach
+            @else
+            <p class="text-center fs-5 mx-auto">Buku tidak ditemukan.</p>
+            @endif
         </div>
     </div>
 </section>
 <section class="unggulan-section" id="unggulan">
     <div class="container">
         <h2 class="mb-4">Unggulan</h2>
+        @if($data->count() > 0)
         <div class="card card-unggulan1 col-md-9">
             <a href="book/{{ $data[0]->slug }}" style="text-decoration: none; color: inherit;">
             <div class="row">
@@ -153,6 +162,9 @@
             </div>
             </a>
         </div>
+        @else
+        <p class="text-center fs-5 mx-auto">Buku tidak ditemukan.</p>
+        @endif
     </div>
 </section>
 <section class="relevan-section" id="relevan">
@@ -160,6 +172,7 @@
         <h2>Semua Buku</h2>
         <a href="/books">Lihat Semua</a>
         <div class="daftar-relevan mt-2 row row-cols-md-4 g-4 justify-content-start align-items-center d-flex flex-row flex-nowrap overflow-x-auto horizontal-scroll">
+            @if($data->count() > 0)
             <?php $i=0; ?>
             @foreach($data as $book)
             <?php 
@@ -184,6 +197,9 @@
                 </div>
             </div>
             @endforeach
+            @else
+            <p class="text-center fs-5 mx-auto">Buku tidak ditemukan.</p>
+            @endif
         </div>
     </div>
 </section>

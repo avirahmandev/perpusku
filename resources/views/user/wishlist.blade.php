@@ -5,6 +5,7 @@
     <div class="mx-5 mt-4">
         <h2 class="text-center mb-4">Daftar Favorit</h2>
         <div class="row g-4">
+            @if($data->count() > 0)
             @foreach($data as $book_wishlist)
             <div class="col-3 mb-3">
                 <div class="card">
@@ -21,6 +22,9 @@
                 </div>
             </div>
             @endforeach
+            @else
+            <p class="text-center fs-5 mx-auto">Buku tidak ditemukan.</p>
+            @endif
         </div>
             {{-- {{ $data->links() }} --}}
     </div>

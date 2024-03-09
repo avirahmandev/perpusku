@@ -11,6 +11,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
+
         <table class="table table-striped table-bordered table-hover text-center mt-2">
             <thead>
                 <tr class="bg-warning">
@@ -21,6 +22,7 @@
                 </tr>
             </thead>
             <tbody>
+            @if($data->count() > 0)
                 @foreach($data as $book)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
@@ -37,6 +39,11 @@
                     </td>
                 </tr>
                 @endforeach
+            @else
+            <tr>
+                <td colspan="4">Buku tidak ditemukan.</td>
+            </tr>
+            @endif
             </tbody>
         </table>
     </div>

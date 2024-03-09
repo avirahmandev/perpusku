@@ -17,30 +17,30 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'nama_lengkap' => 'alexa like',
             'slug' => 'alexa-like',
-            'email' => 'test@gmail.com',
+            'email' => 'alexa@gmail.com',
             'password' => bcrypt('asd'),
-            'wishlist' => 'asd asd',
-            'borrowed_list' => 'ini status pinjaman',
+            'wishlist' => 'none',
+            'borrowed_list' => 'status pinjaman',
             'is_admin' => false
         ]);
 
         User::factory()->create([
-            'nama_lengkap' => 'john like',
-            'slug' => 'john-like',
+            'nama_lengkap' => 'john doe',
+            'slug' => 'john-doe',
             'email' => 'john@gmail.com',
             'password' => bcrypt('123'),
-            'wishlist' => '123 123',
-            'borrowed_list' => 'ini status pinjaman',
+            'wishlist' => 'none',
+            'borrowed_list' => 'status pinjaman',
             'is_admin' => false
         ]);
 
         User::factory()->create([
-            'nama_lengkap' => 'dani',
-            'slug' => 'dani',
-            'email' => 'dani@gmail.com',
-            'password' => bcrypt('asdasd'),
-            'wishlist' => '123 123',
-            'borrowed_list' => 'ini status pinjaman',
+            'nama_lengkap' => 'admin',
+            'slug' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('admin'),
+            'wishlist' => 'none',
+            'borrowed_list' => 'status pinjaman',
             'is_admin' => true
         ]);
     }
